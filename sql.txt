@@ -1,0 +1,68 @@
+sql query 1st class
+
+
+SELECT *FROM EMPLOYEES;
+
+    
+SELECT FIRST_NAME,HIRE_DATE,SALARY FROM EMPLOYEES;
+SELECT JOB_ID,START_DATE,END_DATE FROM JOB_HISTORY; 
+SELECT MIN_SALARY, MAX_SALARY FROM JOBS;
+SELECT DEPARTMENT_ID, DEPARTMENT_NAME FROM DEPARTMENTS;
+SELECT CITY, STATE_PROVINCE FROM LOCATIONS;
+SELECT REGION_NAME, COUNTRY_NAME FROM EMP_DETAILS_VIEW;
+SELECT FIRST_NAME, JOB_ID, MANAGER_ID FROM EMPLOYEES WHERE MANAGER_ID =103;
+SELECT FIRST_NAME, JOB_ID, MANAGER_ID FROM EMPLOYEES WHERE MANAGER_ID !=104;
+SELECT *FROM EMPLOYEES WHERE FIRST_NAME LIKE 'D%' OR FIRST_NAME LIKE 'E%' ;
+SELECT *FROM EMPLOYEES WHERE FIRST_NAME LIKE 'J%' OR MANAGER_ID =103 ;
+SELECT FIRST_NAME, DEPARTMENT_ID, SALARY FROM EMPLOYEES WHERE  FIRST_NAME ='John' ;
+SELECT FIRST_NAME, LAST_NAME FROM EMPLOYEES WHERE SALARY= 8000 ;
+SELECT JOB_ID,JOB_TITLE FROM JOBS WHERE MAX_SALARY < 12000 ;
+SELECT  JOB_TITLE FROM JOBS ; 
+SELECT DISTINCT MANAGER_ID FROM EMPLOYEES ;
+SELECT START_DATE FROM JOB_HISTORY ;
+SELECT EMPLOYEE_ID  , HIRE_DATE FROM EMPLOYEES WHERE HIRE_DATE < '01-MAY-91' ;
+SELECT EMPLOYEE_ID, HIRE_DATE FROM EMPLOYEES;
+SELECT MANAGER_ID FROM EMPLOYEES;
+
+------2nd Class______________________________________________-
+
+
+
+SELECT first_name||' '||last_name as name from employees;
+SELECT first_name||'-'||last_name as name from employees;
+select first_name,employee_id from employees where employee_id = 114;
+select distinct manager_id,first_name from employees;
+select first_name from employees where manager_id=100;
+
+--get the list of employees who report to the manager with id 103
+select first_name from employees where manager_id=103;
+select *from employees where manager_id =103;
+select first_name,last_name from employees where manager_id= 103;
+SELECT first_name||' '||last_name as "employee name" from employees;
+--find out how much jhon russel is making
+select first_name,last_name,salary from employees
+where first_name='John' and last_name='Russell';
+--finds Ismael's phone number
+select first_name ,phone_number from employees WHERE first_name='Ismael';
+--wildcard--% means replace 0 to any number of characters
+select first_name ,phone_number from employees WHERE first_name like 'Is%';
+select first_name ,phone_number from employees WHERE first_name like 'Isma_l';
+select first_name ,phone_number from employees WHERE first_name like 'Isma_l' or 
+last_name like 'Ismael';
+--find the 1st name and last name of the user RMATOS(email)
+SELECT first_name,last_name,email from employees where email='RMATOS';
+--find all employees who work on commison bassis
+--null is not empty ,undefined value,left as null intentionally
+Select first_name,last_name,commission_pct from employees where commission_pct is not null ;
+--not working //Select first_name,last_name,commission_pct from employees where commission_pct != null ;
+Select first_name,last_name,commission_pct from employees where commission_pct IS NOT NULL ;
+Select first_name,last_name,commission_pct from employees where commission_pct  !=0;
+--is not null command is used to test for non empty values(Not null values)
+--is null command is used to test for empty values(null value)
+--front desk clerk needs to know is an employee with the name Donald
+select * from employees where upper(First_Name)='DONALD' and initcap (LAST_NAME)='Oconnell' ;
+
+SELECT * FROM EMPLOYEES WHERE lower(FIRST_NAME)='donald'and initcap(LAST_NAME) like 'O%';
+--find who is receiving the max salary
+select first_name from employees where salary = (select max(salary) from employees);
+select first_name from employees where salary = (select min(salary) from employees);
